@@ -7,7 +7,8 @@ saving_password = []
 feedback = """
             Help - справка
             Add  - Добавить пароль
-            Show - показать список паролей"""
+            Show - показать список паролей
+            Quit - выход из программы"""
 print(feedback)
 programm_is_run = True
 #Основной код
@@ -15,8 +16,12 @@ while programm_is_run:
     command = input('Введите команду\n')
     command = command.lower()
 
-    #help command
-    if command == 'help':
+    #quit
+    if command == 'quit':
+        print('Выход из программы...')
+        exit()
+    # help command
+    elif command == 'help':
         print(feedback)
 
     #show command
