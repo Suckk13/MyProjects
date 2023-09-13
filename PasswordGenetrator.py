@@ -1,14 +1,16 @@
 #password_generator by realcode.cc
 #файлы для работы и настройки, НЕ ТРОГАТЬ ВСЕ СЛОМАЕТСЯ
 import random
-file = open('Passwords.txt', 'w+')
+file = open('Passwords.txt', 'a+')
 file.read()
-saving_password = []
+saving_password = {
+
+}
 feedback = """
             Help - справка
             Add  - Добавить пароль
             Show - показать список паролей
-            Quit - выход из программы"""
+            Quit - выход из программы и сохранение всех паролей"""
 print(feedback)
 programm_is_run = True
 #Основной код
@@ -36,10 +38,12 @@ while programm_is_run:
             password += random.choice(('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'))
         print('Сгенерированный пароль: ', password)
         app = input('Для какого приложения вы хотите его использовать? ')
-        complete = password, ':', app
-        saving_password.append(complete)
-        forfile = str(saving_password)
-        file.write(forfile)
-        file.close()
+        complete = saving_password.update({app: password})
+        key_password = list(saving_password.keys())[-1]
+        app_password = list(saving_password.values())[-1]
+        complete2 = str(key_password + ':' + app_password)
+        file.write(complete2)
+        file.write('\n')
     else:
         print('Команда не найдена')
+file.close()
